@@ -1,9 +1,5 @@
 import socket
-import colorama
 import errno
-from colorama import Fore, Style
-
-colorama.init()
 
 class PortScanner():
     def __init__(self, target):
@@ -26,22 +22,3 @@ class PortScanner():
             return "closed"
         finally:
             s.close()
-    def single_scan(self, port):
-        status = self.scan(port)
-        if status == "open":
-            print(Fore.RED + Style.BRIGHT + f"[+] port {port} is open" + Style.RESET_ALL)
-        elif status == "closed":
-            print(Fore.GREEN + f"[-] port {port} is closed" + Style.RESET_ALL)
-        else:
-            print(Fore.LIGHTBLACK_EX + f"[?] port {port} timeout (filtered)" + Style.RESET_ALL)
-
-    def range_scan(self, begin, end):
-        for port in range(begin, end + 1):
-            status = self.scan(port)
-            if status == "open":
-                print(Fore.RED + Style.BRIGHT + f"[+] port {port} is open" + Style.RESET_ALL)
-            elif status == "closed":
-                print(Fore.GREEN + f"[-] port {port} is closed" + Style.RESET_ALL)
-            else:
-                print(Fore.LIGHTBLACK_EX + f"[?] port {port} timeout (filtered)" + Style.RESET_ALL)
-            
