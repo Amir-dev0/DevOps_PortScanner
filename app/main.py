@@ -1,22 +1,12 @@
-import socket
-import colorama
+from port_scanner import PortScanner
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-target = input("Enter IP:  ")
-
-
-def scan(port):
-    try:
-        con = sock.connect((target, port))
-        return True
-
-    except:
-        return False
-
-
-for x in range(8070, 8090):
-    if scan(x):
-        print(colorama.Fore.RED + f"[+] port {x} is open")
-
-    else:
-        print(colorama.Fore.GREEN + f"[-] port {x} is close")
+type_scan = input("Enter type scan(s, r): ")
+target = input("Enter IP: ").strip()
+instance = PortScanner(target)
+if type_scan == "s":
+    port = int(input("Enter port: "))
+    instance.single_scan(port)
+elif type_scan == "r":
+    begin = int(input("Enter begin port: "))
+    end   = int(input("Enter end port: "))
+    instance.range_scan(begin, end)
