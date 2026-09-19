@@ -1,3 +1,14 @@
 *venv*
 *pycache*
 *pytest*
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Terraform variables / secrets
+terraform.tfvars
+*.tfvars
+*.tfvars.json
